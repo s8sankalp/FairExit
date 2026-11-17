@@ -301,6 +301,14 @@ All settings have local defaults; override them in `.env`.
 * Vault files cannot be changed without `verify` (and every evidence pack) showing it.
 * Deleting an account removes every row, every file (through a retried job) and every token.
 
+## Troubleshooting
+
+| Symptom | Cause and fix |
+|---|---|
+| Backend exits with `password authentication failed for user "fairexit"` | PostgreSQL sets its password only the first time it creates its data volume. If you created or changed `.env` after the first `docker compose up`, run `docker compose down -v` (deletes local data) and start again. |
+| `Bind for 0.0.0.0:6379 failed: port is already allocated` | Another Redis (or Postgres on 5432) is running on your machine. Stop it with `docker stop <name>`. |
+| Tests fail with `Could not find a valid Docker environment` | Start Docker Desktop. On a Mac, also turn on Settings, Advanced, "Allow the default Docker socket to be used". |
+
 ## Limits and future work
 
 Not built in version 1, by choice:
