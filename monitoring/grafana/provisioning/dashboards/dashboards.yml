@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: fairexit
+    folder: FairExit
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards
